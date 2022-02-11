@@ -12,11 +12,23 @@ public class Normal extends Aldeano{
     }
 
     @Override
+    public String toString() {
+        return "Aldenano Normal = " + super.toString()  + "Puntos de Ataque= " + puntosAtaque;
+    }
+
+    @Override
     public void ataque(Aldeano a) {
-        if (a.getPuntosVida()<puntosAtaque) {
+        int puntosAtaqueTemp=puntosAtaque;
+        if (a instanceof Pacifista) {
+            puntosAtaqueTemp *=.05;
+        }
+        
+        if (a.getPuntosVida()<puntosAtaqueTemp) {
             a.setPuntosVida(0);
             return;
         }
-        a.setPuntosVida(a.getPuntosVida()-puntosAtaque);
+        a.setPuntosVida(a.getPuntosVida()-puntosAtaqueTemp);
     }
+    
+    
 }

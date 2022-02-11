@@ -49,6 +49,6 @@ public abstract class Aldeano implements Ataque{
 
     @Override
     public String toString() {
-        return "Aldeano{" + "nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", puntosVida=" + puntosVida + '}';
+        return "nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", puntosVida=" + puntosVida ;
     }
 }

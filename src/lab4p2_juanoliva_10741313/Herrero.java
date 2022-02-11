@@ -40,15 +40,33 @@ public class Herrero extends Aldeano{
         setVidaExtra();
     }
 
-    @Override
-    public void ataque(Aldeano a) {
-        if (a.getPuntosVida()<puntosAtaque) {
-            a.setPuntosVida(0);
+    public int getPuntosAtaque() {
+        return puntosAtaque;
+    }
+
+    public void setPuntosAtaque(int puntosAtaque) {
+        if (puntosAtaque >= 200 && puntosAtaque <= 500) {
+            this.puntosAtaque = puntosAtaque;
             return;
         }
-        a.setPuntosVida(a.getPuntosVida()-puntosAtaque);
+        if (puntosAtaque < 200) {
+            this.puntosAtaque = 200;
+        }else{
+            this.puntosAtaque = 500;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Aldeano Herrero =" + super.toString() +  "vidaExtra=" + vidaExtra + ", puntosAtaque=" + puntosAtaque ;
     }
     
     
     
+    @Override
+    public void ataque(Aldeano a) {
+        
+        
+        
+    }
 }
