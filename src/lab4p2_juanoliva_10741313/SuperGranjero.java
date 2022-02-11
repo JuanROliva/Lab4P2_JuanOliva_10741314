@@ -1,4 +1,5 @@
 package lab4p2_juanoliva_10741313;
+
 public class SuperGranjero extends Aldeano{
     private int puntosAtaque;
 
@@ -6,7 +7,7 @@ public class SuperGranjero extends Aldeano{
         super();
     }
 
-    public SuperGranjero(int puntosAtaque, String nombre, String apellido, int edad, int puntosVida) {
+    public SuperGranjero(String nombre, String apellido, int edad, int puntosVida, int puntosAtaque) {
         super(nombre, apellido, edad, puntosVida);
         this.puntosAtaque = puntosAtaque;
     }
@@ -26,16 +27,21 @@ public class SuperGranjero extends Aldeano{
 
     @Override
     public void ataque(Aldeano a) {
+        int puntosAtaqueTemp=puntosAtaque;
         
+        if (a instanceof Herrero) {
+            puntosAtaqueTemp *=.10;
+        }
+        
+        if (a instanceof Explosivo) {
+            puntosAtaqueTemp *=.15;
+        }
+        
+        if (a.getPuntosVida()<puntosAtaqueTemp) {
+            a.setPuntosVida(0);
+            return;
+        }
+        a.setPuntosVida(a.getPuntosVida()-puntosAtaqueTemp);
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

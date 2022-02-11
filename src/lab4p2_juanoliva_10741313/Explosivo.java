@@ -16,7 +16,7 @@ public class Explosivo extends Aldeano{
 
     @Override
     public String toString() {
-        return "Aldeano Explosivo = " + super.toString() + "Puntos de Ataque = " + puntosAtaque ;
+        return "Explosivo = " + super.toString() + "Puntos de Ataque = " + puntosAtaque ;
     }
     @Override
     public void ataque(Aldeano a) {
@@ -35,6 +35,8 @@ public class Explosivo extends Aldeano{
                 return;
             }
             a.setPuntosVida(a.getPuntosVida()-puntosAtaqueTemp);
+        }else{
+            System.out.println("El ataque no fu exitoso");
         }
     }
     

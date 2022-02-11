@@ -1,6 +1,7 @@
 package lab4p2_juanoliva_10741313;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Herrero extends Aldeano{
     private static final float porcentajeVidaExtra = 0.5F;
@@ -58,15 +59,30 @@ public class Herrero extends Aldeano{
 
     @Override
     public String toString() {
-        return "Aldeano Herrero =" + super.toString() +  "vidaExtra=" + vidaExtra + ", puntosAtaque=" + puntosAtaque ;
+        return "Herrero =" + super.toString() +  "vidaExtra=" + vidaExtra + ", puntosAtaque=" + puntosAtaque ;
     }
     
     
     
     @Override
     public void ataque(Aldeano a) {
-        
-        
-        
+        int puntosAtaqueTemp=puntosAtaque;
+        if (a instanceof Pacifista) {
+            puntosAtaqueTemp *=.05;
+        }
+        if (a instanceof Agronomo) {
+            puntosAtaqueTemp *=.10;
+        }
+        Random aleatorio = new Random();
+        int valor = aleatorio.nextInt(99)+1;
+        if (valor>10) {
+            if (a.getPuntosVida()<puntosAtaqueTemp) {
+                a.setPuntosVida(0);
+                return;
+            }
+            a.setPuntosVida(a.getPuntosVida()-puntosAtaqueTemp);
+        }else{
+            System.out.println("El ataque no fue exitoso");
+        }
     }
 }

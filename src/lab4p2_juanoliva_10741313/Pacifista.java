@@ -4,13 +4,19 @@ import java.util.Random;
 
 public class Pacifista extends Aldeano{
 
-    @Override
-    public String toString() {
-        return "Aldeano Pacifista = " + super.toString() + "No tiene puntos de ataque";
+    public Pacifista() {
+        super();
+    }
+
+    public Pacifista(String nombre, String apellido, int edad, int puntosVida) {
+        super(nombre, apellido, edad, puntosVida);
     }
     
+    @Override
+    public String toString() {
+        return "Pacifista = " + super.toString() + "No tiene puntos de ataque";
+    }
     
-
     @Override
     public void ataque(Aldeano a) {
         Random aleatorio = new Random();
