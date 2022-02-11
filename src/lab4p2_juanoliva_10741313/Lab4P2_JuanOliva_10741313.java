@@ -13,7 +13,10 @@ public class Lab4P2_JuanOliva_10741313 {
         while (ciclo) {
             String opc = menu();
             switch (opc) {
-                case val:
+                case "1":
+                    agregarFamilia();
+                    break;
+                case "2":
                     
                     break;
                 default:
@@ -55,8 +58,21 @@ public class Lab4P2_JuanOliva_10741313 {
     
     static void agregarFamilia(){
         System.out.print("Ingrese el apellido de la familia que desea agregar: ");
-        Str
-        
+        String linaje = lea.nextLine();
+        boolean repetido = false;
+        for (Familia f : familias) {
+            if (f.getLinaje().toLowerCase().equals(linaje.toLowerCase())) {
+                repetido = true;
+                break;
+            }
+        }
+        if (!repetido) {
+            familias.add(new Familia(linaje));
+        }else{
+            System.out.println("La familia ya se encuentra registrada");
+        }
     }
+    
+    
     
 }
