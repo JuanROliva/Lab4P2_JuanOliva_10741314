@@ -14,7 +14,7 @@ public class Pacifista extends Aldeano{
     
     @Override
     public String toString() {
-        return "Pacifista = " + super.toString() + "No tiene puntos de ataque";
+        return "Pacifista => " + super.toString() + " No tiene puntos de ataque";
     }
     
     @Override

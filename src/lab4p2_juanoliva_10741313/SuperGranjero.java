@@ -22,7 +22,7 @@ public class SuperGranjero extends Aldeano{
 
     @Override
     public String toString() {
-        return "SuperGranjero =" + super.toString() + "puntosAtaque=" + puntosAtaque + '}';
+        return "SuperGranjero => " + super.toString() + " puntosAtaque= > " + puntosAtaque ;
     }
 
     @Override

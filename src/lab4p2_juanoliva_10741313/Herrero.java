@@ -59,7 +59,7 @@ public class Herrero extends Aldeano{
 
     @Override
     public String toString() {
-        return "Herrero =" + super.toString() +  "vidaExtra=" + vidaExtra + ", puntosAtaque=" + puntosAtaque ;
+        return "Herrero => " + super.toString() +  " vidaExtra= " + vidaExtra + ", puntosAtaque= " + puntosAtaque ;
     }
     
     
