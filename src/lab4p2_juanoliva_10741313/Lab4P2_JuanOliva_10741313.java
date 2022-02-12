@@ -22,15 +22,14 @@ public class Lab4P2_JuanOliva_10741313 {
                     agregarAldeano();
                     break;
                 case "3":
+                    pelea();
+                    break;
+                    
+                case "4":
                     for (Familia f : familias) {
                         System.out.println(f);
                     }
                     break;
-                    
-                case "4":
-                    pelea();
-                    break;
-                    
                     
                 case "5":
                     ciclo = false;

@@ -23,15 +23,15 @@ public class Pacifista extends Aldeano{
         int discurso = aleatorio.nextInt(2)+1;
         switch (discurso) {
             case 1:
-                System.out.print(" Es mejor hacer el amor que la guerra ");
+                System.out.println(" Es mejor hacer el amor que la guerra ");
                 break;
                 
             case 2:
-                System.out.print(" Amor y Paz ");
+                System.out.println(" Amor y Paz ");
                 break;
             
             default:
-                System.out.print(" No voy a pelear! ");
+                System.out.println(" No voy a pelear! ");
                 break;
         }
     }
