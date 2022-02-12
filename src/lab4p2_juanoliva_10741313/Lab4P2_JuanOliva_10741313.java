@@ -1,6 +1,7 @@
 package lab4p2_juanoliva_10741313;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Lab4P2_JuanOliva_10741313 {
@@ -9,6 +10,7 @@ public class Lab4P2_JuanOliva_10741313 {
     
     public static void main(String[] args) {
         poblarDatos();
+        encabezado();
         boolean ciclo = true;
         while (ciclo) {
             String opc = menu();
@@ -19,11 +21,17 @@ public class Lab4P2_JuanOliva_10741313 {
                 case "2":
                     agregarAldeano();
                     break;
-                case "4":
+                case "3":
                     for (Familia f : familias) {
                         System.out.println(f);
                     }
                     break;
+                    
+                case "4":
+                    pelea();
+                    break;
+                    
+                    
                 case "5":
                     ciclo = false;
                     System.out.println("feliz día de San Valentin adelantado");
@@ -36,8 +44,8 @@ public class Lab4P2_JuanOliva_10741313 {
         Familia montesco = new Familia("Montesco");
         Familia capuleto = new Familia("Capuleto");
         Familia sistemas = new Familia("Sistemas");
-        montesco.getIntregantesFamilia().add(new SuperGranjero("Romero", "Montesco", 30, 1000, 1000));
-        montesco.getIntregantesFamilia().add(new Herrero("Papa Romero", "Montesco", 60, 300, 100));
+        montesco.getIntregantesFamilia().add(new SuperGranjero("Romeo", "Montesco", 30, 1000, 1000));
+        montesco.getIntregantesFamilia().add(new Herrero("Papa Romeo", "Montesco", 60, 300, 100));
         montesco.getIntregantesFamilia().add(new Agronomo("Hermanito Romeo", "Montesco", 20, 150));
         montesco.getIntregantesFamilia().add(new Pacifista("Mama Romeo", "Montesco", 58, 300));
         capuleto.getIntregantesFamilia().add(new Pacifista("Julieta", "Capuleto", 21, 500));
@@ -52,8 +60,18 @@ public class Lab4P2_JuanOliva_10741313 {
     }
     
     
+    static  void encabezado(){
+        System.out.println("-----------------------------------------------------");
+        System.out.println(" Universidad Tecnologica Centroamericana UNITEC");
+        System.out.println(" Asignatura: Laboratorio Programacion II");
+        System.out.println(" Alumno: Juan Rafael Oliva");
+        System.out.println(" Cuenta: 10741313");
+    }
+    
+    
     static String menu(){
         System.out.println("""
+                           **************** MENU **************** 
                            1. Agregar una familia nueva
                            2. Agregar un integrante
                            3. Pelear con una familia
@@ -120,6 +138,11 @@ public class Lab4P2_JuanOliva_10741313 {
             case "5":
                 System.out.print("Ingrese el nombre: ");
                 nombre = lea.nextLine();
+                while ((nombre.toLowerCase().equals("Romeo")||nombre.toLowerCase().equals("Julieta"))) {
+                    System.out.print("Ingrese un nombre diferente: ");
+                    nombre = lea.nextLine();
+                }
+                
                 System.out.print("Ingrese la edad: ");
                 String edadCadena = lea.nextLine();
                 while (!validacionStringNumeros(edadCadena)) {
@@ -200,4 +223,73 @@ public class Lab4P2_JuanOliva_10741313 {
         return condicion;
     }
     
+    static void pelea(){
+        System.out.println("Ingrese el apellido de la familis con la desea pelear: ");
+        String apellido = lea.nextLine();
+        boolean condicion = false;
+        int posicionFamilia = -1;
+        for (Familia f : familias) {
+            if (f.getLinaje().toLowerCase().equals(apellido)) {
+                posicionFamilia = familias.indexOf(f);
+                condicion = true;
+                break;
+            }
+        }
+        
+        if (!condicion) {
+            return;
+        }
+        
+        //cambiar posiciones de los integrantes;
+        Collections.shuffle(familias.get(0).getIntregantesFamilia());
+        Collections.shuffle(familias.get(posicionFamilia).getIntregantesFamilia());
+        
+        ArrayList<Aldeano> fRomeo = familias.get(0).getIntregantesFamilia();
+        ArrayList<Aldeano> otro = familias.get(posicionFamilia).getIntregantesFamilia();
+        
+        
+        //pelea uno a uno
+        boolean combate = true;
+        int contador = 0;
+        while (combate) {
+            if (otro.size()>0&&fRomeo.size()>0) {
+                contador++;
+                Aldeano peleador1 = fRomeo.get(0);
+                Aldeano peleador2 = otro.get(0);
+                if (contador%2==0) {
+                    peleador1.ataque(peleador2);
+                    System.out.println(peleador1.getNombre()+ " ataca y " + 
+                            peleador2.getNombre() + " queda con "+ peleador2.getPuntosVida() + " puntos de vida");
+                    if (peleador2.getPuntosVida()==0) {
+                        otro.remove(peleador2);
+                        System.out.println("Eliminado "+ peleador2.getNombre());
+                    }
+                }else{
+                    peleador2.ataque(peleador1);
+                    System.out.println(peleador2.getNombre()+ " ataca y " + 
+                            peleador1.getNombre() + " queda con "+ peleador1.getPuntosVida() + " puntos de vida");
+                    if (peleador2.getPuntosVida()==0) {
+                        otro.remove(peleador2);
+                        System.out.println("Eliminado "+ peleador1.getNombre());
+                    }
+                }
+            }else{
+                combate = false;
+                String ganador = "";
+                if (fRomeo.size()>0) {
+                    ganador = "Montesco";
+                }else{
+                    ganador = familias.get(posicionFamilia).getLinaje();
+                }
+                
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+    }
 }
